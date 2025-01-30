@@ -205,6 +205,9 @@ type Connection interface {
 	SendDatagram(payload []byte) error
 	// ReceiveDatagram gets a message received in a datagram, as specified in RFC 9221.
 	ReceiveDatagram(context.Context) ([]byte, error)
+
+	// NegotiatedIdleTimeout returns the negotiated idle timeout for the connection
+	NegotiatedIdleTimeout() time.Duration
 }
 
 // An EarlyConnection is a connection that is handshaking.

@@ -464,3 +464,15 @@ func (t *Transport) CloseIdleConnections() {
 		}
 	}
 }
+
+// GetQUICConnection returns the underlying QUIC connection for the first request made
+func (t *Transport) GetQUICConnection() quic.Connection {
+	t.mutex.Lock()
+	defer t.mutex.Unlock()
+	for _, rt := range t.clients {
+		if rt.conn != nil {
+			return rt.conn
+		}
+	}
+	return nil
+}

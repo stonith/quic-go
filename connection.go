@@ -2425,3 +2425,8 @@ func (s *connection) NextConnection(ctx context.Context) (Connection, error) {
 func estimateMaxPayloadSize(mtu protocol.ByteCount) protocol.ByteCount {
 	return mtu - 1 /* type byte */ - 20 /* maximum connection ID length */ - 16 /* tag size */
 }
+
+// NegotiatedIdleTimeout returns the negotiated idle timeout for the connection
+func (s *connection) NegotiatedIdleTimeout() time.Duration {
+	return s.idleTimeout
+}
